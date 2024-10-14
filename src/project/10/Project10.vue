@@ -22,8 +22,6 @@ import {ref, computed, watch} from 'vue';
         return 997 + Number(funnelHackingReplay.value) + Number(partnerAmount.value);
     });
 
-    console.log(calculateSummary.value);
-
     watch(selectedPartnerOption, (newVal) => {
         if (partnerAmount.value !== 0) {
             partnerAmount.value = calculatePartners(newVal);
@@ -48,17 +46,18 @@ import {ref, computed, watch} from 'vue';
         console.error(error);
     };
 
-    const configuration = {
+    const configuration = ref({
         publishableKey: 'pk_sandbox_RsMEoPhRvOXyQRy2e0mCHLm-nfNMND2aW5aW1-n',
         injectStyle: true,
-    };
-
-    const extraData = {
         transactionData: {
             currency: 'USD',
             amount: calculateSummary.value,
         }
-    };
+    });
+
+    watch(calculateSummary, (newVal) => {
+        configuration.value.transactionData.amount = newVal;
+    });
 
 </script>
 
@@ -116,7 +115,8 @@ import {ref, computed, watch} from 'vue';
                         :configuration="configuration"
                         @submit="submitHandler"
                         @error="errorLog"
-                        :extraData="extraData">
+                        v-model="calculateSummary"
+                >
 
                     <div class="w-100 title-div mb-2">
                         <div class="text-title fs-6 fw-light">CONTACT INFORMATION</div>
