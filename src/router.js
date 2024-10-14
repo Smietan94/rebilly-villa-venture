@@ -5,11 +5,13 @@ export const routes = [
         component: () => import('./project/HomePage.vue'),
     },
     // PROJECTS
+    // PROJECT 8
     {
         path: '/project/8',
         name: 'Project8',
         component: () => import('./project/8/Project8.vue'),
     },
+    // PROJECT 9
     {
         path: '/project/9',
         name: 'Project9',
@@ -40,6 +42,12 @@ export const routes = [
         name: 'Checkout',
         component: () => import('./project/9/components/CheckoutForm.vue'),
     },
+    // PROJECT 10
+    {
+        path: '/project/10',
+        name: 'Project10',
+        component: () => import('./project/10/Project10.vue'),
+    },
     // DEBRIEFS
     {
         path: '/debriefs',
@@ -56,4 +64,9 @@ export const routes = [
         name: 'Debrief9',
         component: () => import('./debriefs/9.vue'),
     },
+    {
+        path: '/debriefs/10.vue',
+        name: 'Debrief10',
+        component: () => import('./debriefs/10.vue'),
+    }
 ];
