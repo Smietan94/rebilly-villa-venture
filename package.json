@@ -13,9 +13,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@rebilly/framepay-vue": "^5.26.12",
+    "@rebilly/framepay-vue": "^5.26.13",
     "@rebilly/instruments": "^9.84.6",
-    "@rebilly/revel": "^6.35.8",
+    "@rebilly/revel": "^6.35.9",
     "bootstrap": "5.3",
     "moment": "^2.30.1",
     "pinia": "^2.2.4",
