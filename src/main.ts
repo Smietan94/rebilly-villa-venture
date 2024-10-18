@@ -7,6 +7,7 @@ import FramePay from '@rebilly/framepay-vue';
 import '@rebilly/revel/dist/style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
+import './assets/fonts.css';
 import App from './App.vue';
 
 const app = createApp(App);

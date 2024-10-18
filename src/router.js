@@ -48,6 +48,20 @@ export const routes = [
         name: 'Project10',
         component: () => import('./project/10/Project10.vue'),
     },
+    // CASINO
+    {
+        path: '/project/casino/',
+        name: 'Casino',
+        component: () => import('./project/casino/HomePage.vue'),
+        children: [
+            // PROJECT 11
+            {
+                path: '/project/11',
+                name: 'Project11',
+                component: () => import('./project/casino/11/Project11.vue'),
+            },
+        ],
+    },
     // DEBRIEFS
     {
         path: '/debriefs',
@@ -68,5 +82,10 @@ export const routes = [
         path: '/debriefs/10.vue',
         name: 'Debrief10',
         component: () => import('./debriefs/10.vue'),
-    }
+    },
+    {
+        path: '/debriefs/11.vue',
+        name: 'Debrief11',
+        component: () => import('./debriefs/11.vue'),
+    },
 ];

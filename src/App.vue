@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div id="app">
+    <div id="app" class="app">
         <nav class="navbar bg-body-tertiary p-4">
         <div class="container">
             <button class="btn btn-primary text-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
@@ -21,6 +21,7 @@
                             <li class="list-group-item"><router-link :to="{ name: 'Project8' }" class="btn btn-primary">Project 8</router-link></li>
                             <li class="list-group-item"><router-link :to="{ name: 'Project9' }" class="btn btn-primary">Project 9</router-link></li>
                             <li class="list-group-item"><router-link :to="{ name: 'Project10' }" class="btn btn-primary">Project 10</router-link></li>
+                            <li class="list-group-item"><router-link :to="{ name: 'Casino' }" class="btn btn-primary">Casino</router-link></li>
                         </ul>
                     </div>
                 </div>
@@ -41,3 +42,10 @@
     </div>
 </template>
 
+<style scoped>
+    .app {
+        font-family: 'Roboto', monospace;
+        font-style: normal;
+        font-optical-sizing: auto;
+    }
+</style>
