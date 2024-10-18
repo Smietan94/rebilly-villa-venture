@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <h1>Phronesis project #9</h1>
+        <h1>Phronesis project #10</h1>
         <div>
             <br />
             <div>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <router-link :to="{ name: 'Debriefs' }" class="btn btn-primary text-center m-4 ms-0">Back to debriefs</router-link>
-        <router-link :to="{ name: 'Project9' }" class="btn btn-primary text-center m-4">Go to project #9</router-link>
+        <router-link :to="{ name: 'Project10' }" class="btn btn-primary text-center m-4">Go to project #10</router-link>
     </div>
 
 </template>
