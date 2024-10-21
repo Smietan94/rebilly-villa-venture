@@ -124,5 +124,6 @@
 </script>
 
 <template>
+    <div class="rebilly-instruments-summary"></div>
     <div class="rebilly-instruments mx-auto"></div>
 </template>
