@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import { createPinia } from 'pinia';
 import { routes } from './router';
 import revel from '@rebilly/revel';
@@ -13,7 +13,7 @@ import App from './App.vue';
 const app = createApp(App);
 const pinia = createPinia();
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes
 });
 
