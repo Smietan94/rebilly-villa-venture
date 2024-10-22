@@ -1,6 +1,7 @@
 <script setup>
     import { onMounted } from 'vue';
     import RebillyInstruments from '@rebilly/instruments';
+    import RebillyApi from 'rebilly-js-sdk';
 
     const CUSTOMER_ID = "cus_01JAFK7P8GZ3CPTND0NFRC9N8D";
     const REBILLY_API_KEY = "sk_sandbox_zEGZaD9gCtUZQHuSJPPcxruavuWcGC-8-qvGObd";
@@ -13,50 +14,13 @@
         "REB-APIKEY": REBILLY_API_KEY,
     };
 
+    const rebilly = RebillyApi({
+        sandbox: true,
+        apiKey: REBILLY_API_KEY,
+        organizationId: ORGANIZATION_ID,
+    });
+
     onMounted(() => {
-        const loginRequestBody = {
-            mode: "passwordless",
-            customerId: CUSTOMER_ID
-        };
-
-        const exchangeTokenRequestBody= {
-            acl: [
-                {
-                    scope: {
-                        organizationId: [ORGANIZATION_ID],
-                    },
-                    permissions: [
-                        "PostToken",
-                        "PostDigitalWalletValidation",
-                        "StorefrontGetAccount",
-                        "StorefrontPatchAccount",
-                        "StorefrontPostPayment",
-                        "StorefrontGetTransactionCollection",
-                        "StorefrontGetTransaction",
-                        "StorefrontGetPaymentInstrumentCollection",
-                        "StorefrontPostPaymentInstrument",
-                        "StorefrontGetPaymentInstrument",
-                        "StorefrontPatchPaymentInstrument",
-                        "StorefrontPostPaymentInstrumentDeactivation",
-                        "StorefrontGetWebsite",
-                        "StorefrontGetInvoiceCollection",
-                        "StorefrontGetInvoice",
-                        "StorefrontGetProductCollection",
-                        "StorefrontGetProduct",
-                        "StorefrontPostReadyToPay",
-                        "StorefrontGetPaymentInstrumentSetup",
-                        "StorefrontPostPaymentInstrumentSetup",
-                        "StorefrontGetDepositRequest",
-                        "StorefrontGetDepositStrategy",
-                        "StorefrontPostDeposit",
-                    ],
-                },
-            ],
-            customClaims: {
-                websiteId: WEBSITE_ID,
-            },
-        };
-
         const depositRequestBody = {
             websiteId: "example.com",
             customerId: CUSTOMER_ID,
@@ -71,24 +35,62 @@
         };
 
         (async () => {
-            const loginResponse = await fetch(`${API_URL}/authentication-tokens`, {
-                method: "POST",
-                headers: HEADERS,
-                body: JSON.stringify(loginRequestBody),
+            const { fields: login } = await rebilly.customerAuthentication.login({
+                data: {
+                    customerId: CUSTOMER_ID,
+                    mode: 'passwordless',
+                },
             });
-            const loginToken = (await loginResponse.json()).token;
-            const exchangeTokenResponse = await fetch(`${API_URL}/authentication-tokens/${loginToken}/exchange`, {
-                method: "POST",
-                headers: HEADERS,
-                body: JSON.stringify(exchangeTokenRequestBody),
-            });
+
+            const { fields: exchangeToken } =
+                await rebilly.customerAuthentication.exchangeToken({
+                    token: login.token,
+                    data: {
+                        acl: [
+                            {
+                                scope: {
+                                    organizationId: [ORGANIZATION_ID],
+                                },
+                                permissions: [
+                                    "PostToken",
+                                    "PostDigitalWalletValidation",
+                                    "StorefrontGetAccount",
+                                    "StorefrontPatchAccount",
+                                    "StorefrontPostPayment",
+                                    "StorefrontGetTransactionCollection",
+                                    "StorefrontGetTransaction",
+                                    "StorefrontGetPaymentInstrumentCollection",
+                                    "StorefrontPostPaymentInstrument",
+                                    "StorefrontGetPaymentInstrument",
+                                    "StorefrontPatchPaymentInstrument",
+                                    "StorefrontPostPaymentInstrumentDeactivation",
+                                    "StorefrontGetWebsite",
+                                    "StorefrontGetInvoiceCollection",
+                                    "StorefrontGetInvoice",
+                                    "StorefrontGetProductCollection",
+                                    "StorefrontGetProduct",
+                                    "StorefrontPostReadyToPay",
+                                    "StorefrontGetPaymentInstrumentSetup",
+                                    "StorefrontPostPaymentInstrumentSetup",
+                                    "StorefrontGetDepositRequest",
+                                    "StorefrontGetDepositStrategy",
+                                    "StorefrontPostDeposit",
+                                ],
+                            },
+                        ],
+                        customClaims: {
+                            websiteId: WEBSITE_ID,
+                        },
+                    },
+                });
+            const { token } = exchangeToken;
+
             const depositResponse = await fetch(`${API_URL}/deposit-requests`, {
                 method: "POST",
                 headers: HEADERS,
                 body: JSON.stringify(depositRequestBody),
             });
             const depositRequestId = (await depositResponse.json()).id;
-            const token = (await exchangeTokenResponse.json()).token;
 
             // Mount Rebilly Instruments
             RebillyInstruments.mount({
