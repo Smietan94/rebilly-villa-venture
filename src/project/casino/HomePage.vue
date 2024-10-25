@@ -26,7 +26,7 @@
                             <a class="nav-link" href="#">Promotions</a>
                         </li>
                         <li class="nav-item">
-                            <router-link :to="{ name: 'Project11' }" class="nav-link">Deposit</router-link>
+                            <router-link :to="{ name: 'Deposit' }" class="nav-link">Deposit</router-link>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>

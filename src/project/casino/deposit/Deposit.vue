@@ -1,5 +1,5 @@
 <script setup>
-    import { onMounted } from 'vue';
+    import { onMounted, ref, computed } from 'vue';
     import RebillyInstruments from '@rebilly/instruments';
     import RebillyApi from 'rebilly-js-sdk';
 
@@ -20,20 +20,51 @@
         organizationId: ORGANIZATION_ID,
     });
 
-    onMounted(() => {
-        const depositRequestBody = {
-            websiteId: "example.com",
-            customerId: CUSTOMER_ID,
-            currency: "USD",
-            redirectUrl: "https://example.com",
-            amounts: [10, 20, 30, 40],
-            customAmount: {
-                minimum: 10,
-                maximum: 5000,
-                multipleOf: 1
-            },
-        };
+    const currency = ref("USD");
+    const depositRequestBody = ref({
+        websiteId: "example.com",
+        customerId: CUSTOMER_ID,
+        currency: currency.value,
+        redirectUrl: "https://example.com",
+    });
 
+    const requestDepositId = async () => {
+        const depositResponse = await fetch(`${API_URL}/deposit-requests`, {
+            method: "POST",
+            headers: HEADERS,
+            body: JSON.stringify(depositRequestBody.value),
+        });
+
+        return (await depositResponse.json()).id;
+    }
+
+    const handleCurrencyChange = async () => {
+        depositRequestBody.value.currency = currency.value;
+
+        if (currency.value === "CAD") {
+            let cadBadge = document.getElementById('cad-badge');
+            cadBadge.innerHTML = `<h1 class="badge text-bg-secondary">CAD</h1>`;
+
+            let usdBadge = document.getElementById('usd-badge');
+            usdBadge.innerHTML = '';
+        } else {
+            let usdBadge = document.getElementById('usd-badge');
+            usdBadge.innerHTML = `<h1 class="badge text-bg-secondary">USD</h1>`;
+
+            let cadBadge = document.getElementById('cad-badge');
+            cadBadge.innerHTML = '';
+        }
+
+        const depositRequestId = await requestDepositId();
+
+        RebillyInstruments.update({
+            deposit: {
+                depositRequestId,
+            },
+        });
+    }
+
+    onMounted(() => {
         (async () => {
             const { fields: login } = await rebilly.customerAuthentication.login({
                 data: {
@@ -85,12 +116,7 @@
                 });
             const { token } = exchangeToken;
 
-            const depositResponse = await fetch(`${API_URL}/deposit-requests`, {
-                method: "POST",
-                headers: HEADERS,
-                body: JSON.stringify(depositRequestBody),
-            });
-            const depositRequestId = (await depositResponse.json()).id;
+            const depositRequestId = await requestDepositId();
 
             // Mount Rebilly Instruments
             RebillyInstruments.mount({
@@ -126,6 +152,39 @@
 </script>
 
 <template>
-    <div class="rebilly-instruments-summary mx-auto"></div>
-    <div class="rebilly-instruments mx-auto"></div>
+    <div class="container text-light text-center mx-auto mb-5 text-uppercase">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Select deposit currency:</label>
+    </div>
+    <div class="container">
+        <div class="row text-light">
+            <div id="usd-badge" class="col col-xl-5 text-end"><h1 class="badge text-bg-secondary">USD</h1></div>
+            <div class="mx-auto text-end text-light col col-xl-2">
+                <div class="form-check form-switch mx-auto">
+                    <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="flexSwitchCheckDefault"
+                            v-model="currency"
+                            :true-value="'CAD'"
+                            :false-value="'USD'"
+                            @change="handleCurrencyChange"
+                    >
+                </div>
+            </div>
+            <div id="cad-badge" class="col col-xl-5 text-start"></div>
+        </div>
+    </div>
+    <div class="mx-auto">
+        <div class="rebilly-instruments-summary mx-auto"></div>
+        <div class="rebilly-instruments mx-auto"></div>
+    </div>
 </template>
+
+<style>
+    .form-check {
+        display: flex;
+        justify-content: center; /* Centers the switch horizontally */
+        align-items: center; /* Centers the switch vertically if needed */
+    }
+</style>

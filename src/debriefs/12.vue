@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <h1>Phronesis project #11 - deposit</h1>
+        <h1>Phronesis project #12 - deposit</h1>
         <div>
             <br />
             <div>
@@ -15,14 +15,20 @@
             <div>
                 What made you smile?
                 <ul>
-                    <li>No problems encountered</li>
+                    <li>Filters are really helpful in setting up deposit form</li>
                 </ul>
             </div>
             <br />
             <div>
                 What did you find confusing? Did you encounter any issues?
                 <ul>
-                    <li>Passing css into rebillyInstruments mount as one of configuration arguments is little confusing</li>
+                    <li class="mb-4">lack of information that the currency should be set up in the gateway account, before creating the deposit strategy, it leads to this error.
+                        <img src="../../public/project12/1.png">
+                    </li>
+                    <li>after checking "Adjust base amount to last deposited amount", the base deposit amount is displayed as NaN.
+                        <img src="../../public/project12/2.png">
+                        <img src="../../public/project12/3.png">
+                    </li>
                 </ul>
             </div>
         </div>

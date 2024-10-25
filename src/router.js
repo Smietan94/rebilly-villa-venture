@@ -54,11 +54,11 @@ export const routes = [
         name: 'Casino',
         component: () => import('./project/casino/HomePage.vue'),
         children: [
-            // PROJECT 11
+            // PROJECT deposit
             {
-                path: '/project/11',
-                name: 'Project11',
-                component: () => import('./project/casino/11/Project11.vue'),
+                path: '/deposit',
+                name: 'Deposit',
+                component: () => import('@/project/casino/deposit/Deposit.vue'),
             },
         ],
     },
@@ -69,23 +69,28 @@ export const routes = [
         component: () => import('./debriefs/Debriefs.vue'),
     },
     {
-        path: '/debriefs/8.vue',
+        path: '/debriefs/8',
         name: 'Debrief8',
         component: () => import('./debriefs/8.vue'),
     },
     {
-        path: '/debriefs/9.vue',
+        path: '/debriefs/9',
         name: 'Debrief9',
         component: () => import('./debriefs/9.vue'),
     },
     {
-        path: '/debriefs/10.vue',
+        path: '/debriefs/10',
         name: 'Debrief10',
         component: () => import('./debriefs/10.vue'),
     },
     {
-        path: '/debriefs/11.vue',
+        path: '/debriefs/deposit',
         name: 'Debrief11',
         component: () => import('./debriefs/11.vue'),
+    },
+    {
+        path: '/debriefs/12',
+        name: 'Debrief12',
+        component: () => import('./debriefs/12.vue'),
     },
 ];
