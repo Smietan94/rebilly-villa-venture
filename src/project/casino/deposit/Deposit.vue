@@ -2,6 +2,7 @@
     import { onMounted, ref, computed } from 'vue';
     import RebillyInstruments from '@rebilly/instruments';
     import RebillyApi from 'rebilly-js-sdk';
+    import '../../../assets/bootstrap-variables-p11.scss';
 
     const CUSTOMER_ID = "cus_01JAFK7P8GZ3CPTND0NFRC9N8D";
     const REBILLY_API_KEY = "sk_sandbox_zEGZaD9gCtUZQHuSJPPcxruavuWcGC-8-qvGObd";

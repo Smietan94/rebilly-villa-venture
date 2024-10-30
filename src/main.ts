@@ -8,7 +8,6 @@ import '@rebilly/revel/dist/style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
 import './assets/fonts.css';
-import './assets/bootstrap-variables-p11.scss';
 import App from './App.vue';
 
 const app = createApp(App);
