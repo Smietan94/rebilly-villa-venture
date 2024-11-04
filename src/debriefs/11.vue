@@ -5,24 +5,24 @@
         <div>
             <br />
             <div>
-                Teammates:
-                <ul>
-                    <li>Alexander Kochetov</li>
-                    <li>Kris Smietana</li>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">Teammates:</li>
+                    <li class="list-group-item">Alexander Kochetov</li>
+                    <li class="list-group-item">Kris Smietana</li>
                 </ul>
             </div>
             <br />
             <div>
-                What made you smile?
-                <ul>
-                    <li>No problems encountered</li>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">What made you smile?</li>
+                    <li class="list-group-item">Teamwork, No problems encountered</li>
                 </ul>
             </div>
             <br />
             <div>
-                What did you find confusing? Did you encounter any issues?
-                <ul>
-                    <li>Passing css into rebillyInstruments mount as one of configuration arguments is little confusing</li>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">What did you find confusing? Did you encounter any issues?</li>
+                    <li class="list-group-item">Passing css into rebillyInstruments mount as one of configuration arguments is little confusing</li>
                 </ul>
             </div>
         </div>

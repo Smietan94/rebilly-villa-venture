@@ -5,24 +5,24 @@
         <div>
             <br />
             <div>
-            Teammates:
-            <ul>
-                <li>Alexander Kochetov</li>
-                <li>Kris Smietana</li>
+            <ul class="list-group">
+                <li class="list-group-item active" aria-current="true">Teammates:</li>
+                <li class="list-group-item">Alexander Kochetov</li>
+                <li class="list-group-item">Kris Smietana</li>
             </ul>
             </div>
             <br />
             <div>
-                What made you smile?
-                <ul>
-                    <li>Mostly everything was clear</li>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">What made you smile?</li>
+                    <li class="list-group-item">Teamwork, Mostly everything was clear</li>
                 </ul>
             </div>
             <br />
-                <div>
-                What did you find confusing? Did you encounter any issues?
-                <ul>
-                    <li>Conditions for shipping rates are quite confusing, some description would be helpful. When adding addon offer, shipping rate turns to 0 from 4.99</li>
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">What did you find confusing? Did you encounter any issues?</li>
+                    <li class="list-group-item">Conditions for shipping rates are quite confusing, some description would be helpful. When adding addon offer, shipping rate turns to 0 from 4.99</li>
                 </ul>
             </div>
         </div>

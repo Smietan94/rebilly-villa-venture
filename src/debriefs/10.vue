@@ -5,24 +5,24 @@
         <div>
             <br />
             <div>
-                Teammates:
-                <ul>
-                    <li>Alexander Kochetov</li>
-                    <li>Kris Smietana</li>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">Teammates:</li>
+                    <li class="list-group-item">Alexander Kochetov</li>
+                    <li class="list-group-item">Kris Smietana</li>
                 </ul>
             </div>
             <br />
             <div>
-                What made you smile?
-                <ul>
-                    <li>Mostly everything was clear</li>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">What made you smile?</li>
+                    <li class="list-group-item">Teamwork, Mostly everything was clear</li>
                 </ul>
             </div>
             <br />
             <div>
-                What did you find confusing? Did you encounter any issues?
-                <ul>
-                    <li>broken links to documentation <a href="https://www.npmjs.com/package/@rebilly/framepay-vue#initialization">npmjs</a></li>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">What did you find confusing? Did you encounter any issues?</li>
+                    <li class="list-group-item">broken links to documentation <a href="https://www.npmjs.com/package/@rebilly/framepay-vue#initialization">npmjs</a></li>
                 </ul>
             </div>
         </div>

@@ -5,26 +5,26 @@
         <div>
             <br />
             <div>
-            Teammates:
-            <ul>
-                <li>Alexander Kochetov</li>
-                <li>Kris Smietana</li>
-            </ul>
-        </div>
-        <br />
-        <div>
-            What made you smile?
-            <ul>
-                <li>Everything was convenient and clear</li>
-            </ul>
-        </div>
-        <br />
-        <div>
-            What did you find confusing? Did you encounter any issues?
-            <ul>
-                <li>We did not encounter any issues</li>
-            </ul>
-        </div>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">Teammates:</li>
+                    <li class="list-group-item">Alexander Kochetov</li>
+                    <li class="list-group-item">Kris Smietana</li>
+                </ul>
+            </div>
+            <br />
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">What made you smile?</li>
+                    <li class="list-group-item">Teamwork, Everything was convenient and clear</li>
+                </ul>
+            </div>
+            <br />
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">What did you find confusing? Did you encounter any issues?</li>
+                    <li class="list-group-item">We did not encounter any issues</li>
+                </ul>
+            </div>
         </div>
         <router-link :to="{ name: 'Debriefs' }" class="btn btn-primary text-center m-4 ms-0">Back to debriefs</router-link>
         <router-link :to="{ name: 'Project8' }" class="btn btn-primary text-center m-4">Go to project #8</router-link>
