@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <h1>Phronesis project #10</h1>
+        <h1>Phronesis project #10 - Funnel hacking live</h1>
         <div>
             <br />
             <div>

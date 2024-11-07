@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <h1>Phronesis project #8</h1>
+        <h1>Phronesis project #8 - Add consent check to the payment flow</h1>
         <div>
             <br />
             <div>

@@ -4,7 +4,7 @@
     import RebillyApi from 'rebilly-js-sdk';
     import '../../../assets/bootstrap-variables-p11.scss';
 
-    const CUSTOMER_ID = "cus_01JAFK7P8GZ3CPTND0NFRC9N8D";
+    const CUSTOMER_ID = "cus_01JC2Y9B06EV8D2J7V2D71RT3Q";
     const REBILLY_API_KEY = "sk_sandbox_zEGZaD9gCtUZQHuSJPPcxruavuWcGC-8-qvGObd";
     const ORGANIZATION_ID = "phronesis---gamble-grove";
     const WEBSITE_ID = "example.com";

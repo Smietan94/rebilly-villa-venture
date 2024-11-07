@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <h1>Phronesis project #9</h1>
+        <h1>Phronesis project #9 - Online store</h1>
         <div>
             <br />
             <div>

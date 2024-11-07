@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <h1>Phronesis project #11 - deposit</h1>
+        <h1>Phronesis project #11 - Casino deposit page</h1>
         <div>
             <br />
             <div>
