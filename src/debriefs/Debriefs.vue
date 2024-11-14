@@ -9,6 +9,7 @@
             <li class="list-group-item"><router-link :to="{ name: 'Debrief12' }" class="btn btn-primary">Project 12</router-link></li>
             <li class="list-group-item"><router-link :to="{ name: 'Debrief13' }" class="btn btn-primary">Project 13</router-link></li>
             <li class="list-group-item"><router-link :to="{ name: 'Debrief14' }" class="btn btn-primary">Project 14</router-link></li>
+            <li class="list-group-item"><router-link :to="{ name: 'Debrief15' }" class="btn btn-primary">Project 15</router-link></li>
         </ul>
     </div>
 </template>
