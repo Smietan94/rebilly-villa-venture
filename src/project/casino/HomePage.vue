@@ -23,7 +23,7 @@
                             <a class="nav-link" href="#">Games</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Promotions</a>
+                            <router-link :to="{ name: 'Payout' }" class="nav-link">Payout</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link :to="{ name: 'Deposit' }" class="nav-link">Deposit</router-link>

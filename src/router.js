@@ -56,9 +56,14 @@ export const routes = [
         children: [
             // PROJECT deposit
             {
-                path: '/deposit',
+                path: 'casino/deposit',
                 name: 'Deposit',
                 component: () => import('@/project/casino/deposit/Deposit.vue'),
+            },
+            {
+                path: 'casino/payout',
+                name: 'Payout',
+                component: () => import('@/project/casino/payout/Payout.vue'),
             },
         ],
     },
@@ -107,5 +112,10 @@ export const routes = [
         path: '/debriefs/15',
         name: 'Debrief15',
         component: () => import('./debriefs/15.vue'),
+    },
+    {
+        path: '/debriefs/project16',
+        name: 'Debrief16',
+        component: () => import('./debriefs/16.vue'),
     },
 ];
