@@ -3,7 +3,6 @@
     import RebillyInstruments from '@rebilly/instruments';
     import RebillyApi from 'rebilly-js-sdk';
 
-    const CUSTOMER_ID = "cus_01JC2Y9B06EV8D2J7V2D71RT3Q";
     const REBILLY_API_KEY = "sk_sandbox_zEGZaD9gCtUZQHuSJPPcxruavuWcGC-8-qvGObd";
     const ORGANIZATION_ID = "phronesis---gamble-grove";
     const WEBSITE_ID = "example.com";
@@ -14,9 +13,13 @@
         organizationId: ORGANIZATION_ID,
     });
 
+    const selectedClient = ref(null);
+
+    const loading = ref(false);
+
     const payoutRequestBody = ref({
         websiteId: "example.com",
-        customerId: CUSTOMER_ID,
+        customerId: selectedClient.value,
         currency: "USD",
         amount: 50,
     });
@@ -24,8 +27,12 @@
     const instrumentsMounted = ref(false);
 
     async function makeDepositRequest() {
+        console.log({ payoutRequestBody: payoutRequestBody.value})
         const {fields: payoutRequest} = await rebilly.payoutRequests.create({
-            data: payoutRequestBody.value,
+            data: {
+                ...payoutRequestBody.value,
+                customerId: selectedClient.value,
+            },
         })
 
         if (instrumentsMounted.value) {
@@ -43,9 +50,10 @@
     }
 
     async function mountInstruments(payoutRequestId) {
+        loading.value = true;
         const { fields: login } = await rebilly.customerAuthentication.login({
             data: {
-                customerId: CUSTOMER_ID,
+                customerId: selectedClient.value,
                 mode: 'passwordless',
             },
         });
@@ -107,6 +115,7 @@
         // Optional
         RebillyInstruments.on("instrument-ready", (instrument) => {
             console.info("instrument-ready", instrument);
+            loading.value = false
         });
         RebillyInstruments.on("purchase-completed", (purchase) => {
             console.info("purchase-completed", purchase);
@@ -116,10 +125,30 @@
 </script>
 
 <template>
-    <div class="container text-light text-center mx-auto mb-5 text-uppercase">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Select payout amount:</label>
+    <div class="container position-relative">
+        <div v-if="!instrumentsMounted" class="container text-light text-left mx-auto mb-5 text-uppercase">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Select customer:</label>
+            <div>
+                <input id="client-usa" type="radio" value="cus_01JDS16HHYW82RY5TMJJ2AYX96" v-model="selectedClient" class="r-mr-2" />
+                <label for="client-usa">Adalbert Dryhole - USA</label>
+            </div>
+            <div>
+                <input id="client-ca" type="radio" value="cus_01JDS193ECAVYNMXPERDEJTS0V" v-model="selectedClient" class="r-mr-2" />
+                <label for="client-ca">Victoria Maple - CA</label>
+            </div>
+            <div>
+                <input id="client-pl" type="radio" value="cus_01JC2Y9B06EV8D2J7V2D71RT3Q" v-model="selectedClient" class="r-mr-2" />
+                <label for="client-pl">Adam Małysz - PL</label>
+            </div>
+        </div>
+        <div v-if="selectedClient && !instrumentsMounted && !loading" class="container text-light text-center mx-auto mb-5 text-uppercase">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Select payout amount:</label>
+        </div>
+        <div v-if="loading && !instrumentsMounted" class="position-absolute w-100 h-100 d-flex justify-content-center align-content-center bg-white text-black" style="left: 0; top: 0;">
+            <span>LOADING</span>
+        </div>
     </div>
-    <div class="container">
+    <div v-if="selectedClient && !instrumentsMounted" class="container">
         <div class="row text-light justify-content-center">
             <div class="col col-xl-4">
                 <div class="input-group mb-3">
