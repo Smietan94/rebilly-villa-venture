@@ -2,7 +2,6 @@
     import { onMounted, ref, computed, watch } from 'vue';
     import RebillyInstruments from '@rebilly/instruments';
     import RebillySDK from 'rebilly-js-sdk';
-    // import '../../../assets/bootstrap-variables-p11.scss';
 
     const REBILLY_API_KEY = "sk_sandbox_zEGZaD9gCtUZQHuSJPPcxruavuWcGC-8-qvGObd";
     const ORGANIZATION_ID = "phronesis---gamble-grove";
@@ -25,7 +24,7 @@
         websiteId: "example.com",
         customerId: null,
         currency: currency.value,
-        redirectUrl: "https://example.com",
+        redirectUrl: "https://bucolic-naiad-649181.netlify.app/#/project/casino/",
     });
     const customers = ref([]);
     const selectedCustomer = ref(null);
@@ -115,17 +114,17 @@
 </script>
 
 <template>
-    <div v-if="!selectedCustomer" class="default-bootstrap container w-50">
-        <h4 class="text-white-50">Select which customer you are:</h4>
-        <select class="form-select form-select-sm" aria-label="customer select" v-model="selectedCustomer">
-            <option v-for="customer in customers" :value="customer.fields.id">
-                {{ `${ customer.fields.firstName } ${ customer.fields.lastName }` }}:
-                <span class="fw-bold" v-for="tag in customer.fields.tags">
-                    {{ ` ${tag.name}` }}
-                </span>
-            </option>
-        </select>
-    </div>
+<!--    <div v-if="!selectedCustomer" class="default-bootstrap container w-50">-->
+<!--        <h4 class="text-white-50">Select which customer you are:</h4>-->
+<!--        <select class="form-select form-select-sm" aria-label="customer select" v-model="selectedCustomer">-->
+<!--            <option v-for="customer in customers" :value="customer.fields.id">-->
+<!--                {{ `${ customer.fields.firstName } ${ customer.fields.lastName }` }}:-->
+<!--                <span class="fw-bold" v-for="tag in customer.fields.tags">-->
+<!--                    {{ ` ${tag.name}` }}-->
+<!--                </span>-->
+<!--            </option>-->
+<!--        </select>-->
+<!--    </div>-->
     <div class="mx-auto">
         <div id="deposit"></div>
     </div>
@@ -143,10 +142,10 @@
         --r-button-secondary-border: #f8c471;
         --r-button-primary-text-color: #212529;
         --r-select-background: #212529;
-        --r-select-background-focus: #212529;
         --r-select-border-radius: 0;
         --r-select-text-color: #fff;
-        --r-select-label-color: #fff;
+        --r-select-label-color: #be00ff;
+        --r-select-background-focus: #212529;
         --r-button-text-color: #fff;
         --r-input-label-color: #fff;
         --r-title-header-color: #fff;
@@ -162,6 +161,26 @@
         --r-alert-border-radius: 0;
         --r-border-radius: 0;
         --r-border-radius-s: 0;
+        --r-result-title-color: #AFE1AF;
+        --r-result-color: #AFE1AF;
+    }
+
+    .r-select {
+        border-radius: 0 !important;
+
+        .r-select-field-wrapper {
+            border-radius: 0 !important;
+
+            option {
+                border: 0 !important;
+                border-radius: 0 !important;
+            }
+
+            .r-select-field {
+                background: #212529 !important;
+                border-radius: 0 !important;
+            }
+        }
     }
 
     .r-button {
@@ -184,6 +203,14 @@
                 border-radius: 0;
             }
         }
+    }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: #fff;
+        background-color: #212529;
     }
 
     .form-check {

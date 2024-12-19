@@ -14,6 +14,7 @@
             <li class="list-group-item"><router-link :to="{ name: 'Debrief17' }" class="btn btn-primary">Project 17</router-link></li>
             <li class="list-group-item"><router-link :to="{ name: 'Debrief18' }" class="btn btn-primary">Project 18</router-link></li>
             <li class="list-group-item"><router-link :to="{ name: 'Debrief19' }" class="btn btn-primary">Project 19</router-link></li>
+            <li class="list-group-item"><router-link :to="{ name: 'Debrief20' }" class="btn btn-primary">Project 20</router-link></li>
         </ul>
     </div>
 </template>
