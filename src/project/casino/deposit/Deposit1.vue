@@ -1,8 +1,8 @@
 <script setup>
     import { onMounted, ref, computed, watch } from 'vue';
     import RebillyInstruments from '@rebilly/instruments';
-    import RebillySDK from 'rebilly-js-sdk';
-    // import '../../../assets/bootstrap-variables-p11.scss';
+    import RebillyApi from 'rebilly-js-sdk';
+    import '../../../assets/bootstrap-variables-p11.scss';
 
     const REBILLY_API_KEY = "sk_sandbox_zEGZaD9gCtUZQHuSJPPcxruavuWcGC-8-qvGObd";
     const ORGANIZATION_ID = "phronesis---gamble-grove";
@@ -14,7 +14,7 @@
         "REB-APIKEY": REBILLY_API_KEY,
     };
 
-    const rebilly = RebillySDK({
+    const rebilly = RebillyApi({
         sandbox: true,
         apiKey: REBILLY_API_KEY,
         organizationId: ORGANIZATION_ID,
@@ -31,6 +31,7 @@
     const selectedCustomer = ref(null);
 
     async function mountInstruments () {
+        console.log({mountInstrumentsCustomerId: selectedCustomer.value});
         const { fields: login } = await rebilly.customerAuthentication.login({
             data: {
                 customerId: selectedCustomer.value,
@@ -82,16 +83,36 @@
         const { token } = exchangeToken;
 
         const depositRequestId = await requestDepositId();
-        const mountElement = document.querySelector('#deposit');
 
-        if (window.RebillyCashier) {
-            RebillyCashier.renderDeposit({
-                mountElement,
-                token: depositRequestId,
-            });
-        } else {
-            console.error('RebillyCashier library not loaded');
-        }
+        // Mount Rebilly Instruments
+        RebillyInstruments.mount({
+            apiMode: "sandbox",
+            theme: {
+                colorPrimary: '#f8c471', // Brand color
+                colorText: '#ffffff',
+                colorDanger: '#cd5c5c',
+                colorBackground: '#212529', // Website background color
+                buttonColorText: '#212529',
+                fontFamily: 'Roboto, monospace' // Website font family
+            },
+            css: `
+                    .rebilly-instruments-form-field-label {
+                        font-family: 'Roboto', sans-serif;
+                        color: #ffffff;
+                    }
+                `,
+            deposit: {
+                depositRequestId,
+            },
+            jwt: token,
+        });
+        // Optional
+        RebillyInstruments.on("instrument-ready", (instrument) => {
+            console.info("instrument-ready", instrument);
+        });
+        RebillyInstruments.on("purchase-completed", (purchase) => {
+            console.info("purchase-completed", purchase);
+        });
     }
 
     watch(selectedCustomer, async (newCustomerId) => {
@@ -100,21 +121,75 @@
     })
 
     const requestDepositId = async () => {
-        const depositResponse = await rebilly.depositRequests.create({data: depositRequestBody.value});
+        const depositResponse = await fetch(`${API_URL}/deposit-requests`, {
+            method: "POST",
+            headers: HEADERS,
+            body: JSON.stringify(depositRequestBody.value),
+        });
 
-        return depositResponse.fields.cashierToken;
+        return (await depositResponse.json()).id;
+    }
+
+    const handleCurrencyChange = async () => {
+        depositRequestBody.value.currency = currency.value;
+
+        if (currency.value === "CAD") {
+            let cadBadge = document.getElementById('cad-badge');
+            cadBadge.innerHTML = `<h1 class="badge text-bg-secondary">CAD</h1>`;
+
+            let usdBadge = document.getElementById('usd-badge');
+            usdBadge.innerHTML = '';
+        } else {
+            let usdBadge = document.getElementById('usd-badge');
+            usdBadge.innerHTML = `<h1 class="badge text-bg-secondary">USD</h1>`;
+
+            let cadBadge = document.getElementById('cad-badge');
+            cadBadge.innerHTML = '';
+        }
+
+        const depositRequestId = await requestDepositId();
+
+        RebillyInstruments.update({
+            deposit: {
+                depositRequestId,
+            },
+        });
     }
 
     onMounted(() => {
         (async () => {
             const { items } = await rebilly.customers.getAll();
             customers.value = items;
-            selectedCustomer.value = items[0].fields.id;
         })();
     });
 </script>
 
 <template>
+    <div v-if="selectedCustomer">
+        <div class="container text-light text-center mx-auto mb-5 text-uppercase">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Select deposit currency:</label>
+        </div>
+        <div class="container currency-picker">
+            <div class="row text-light">
+                <div id="usd-badge" class="col col-xl-5 text-end"><h1 class="badge text-bg-secondary">USD</h1></div>
+                <div class="mx-auto text-end text-light col col-xl-2">
+                    <div class="form-check form-switch mx-auto">
+                        <input
+                                class="form-check-input"
+                                type="checkbox"
+                                role="switch"
+                                id="flexSwitchCheckDefault"
+                                v-model="currency"
+                                :true-value="'CAD'"
+                                :false-value="'USD'"
+                                @change="handleCurrencyChange"
+                        >
+                    </div>
+                </div>
+                <div id="cad-badge" class="col col-xl-5 text-start"></div>
+            </div>
+        </div>
+    </div>
     <div v-if="!selectedCustomer" class="default-bootstrap container w-50">
         <h4 class="text-white-50">Select which customer you are:</h4>
         <select class="form-select form-select-sm" aria-label="customer select" v-model="selectedCustomer">
@@ -127,65 +202,12 @@
         </select>
     </div>
     <div class="mx-auto">
-        <div id="deposit"></div>
+        <div class="rebilly-instruments-summary mx-auto"></div>
+        <div class="rebilly-instruments mx-auto"></div>
     </div>
 </template>
 
 <style>
-    :root {
-        --r-background: #212529;
-        --r-button-background: #212529;
-        --r-button-border-color: #AFE1AF;
-        --r-button-border-style: solid;
-        --r-button-primary-background: #f8c471;
-        --r-button-secondary-background: #212529;
-        --r-button-secondary-text-color-hover: #f8c471;
-        --r-button-secondary-border: #f8c471;
-        --r-button-primary-text-color: #212529;
-        --r-select-background: #212529;
-        --r-select-background-focus: #212529;
-        --r-select-border-radius: 0;
-        --r-select-text-color: #fff;
-        --r-select-label-color: #fff;
-        --r-button-text-color: #fff;
-        --r-input-label-color: #fff;
-        --r-title-header-color: #fff;
-        --r-font-family: "Inter", serif;
-        --r-payment-method-item-border-color: #AFE1AF;
-        --r-payment-method-item-border-width: 2px;
-        --r-payment-method-item-background: #212529;
-        --r-payment-method-item-label-color: #fff;
-        --r-payment-method-item-border-radius: 0;
-        --r-payment-method-logo-border-radius: 0;
-        --r-button-border-radius: 0;
-        --r-input-border-radius: 0;
-        --r-alert-border-radius: 0;
-        --r-border-radius: 0;
-        --r-border-radius-s: 0;
-    }
-
-    .r-button {
-        border-color: var(--r-primary);
-    }
-
-    .r-button-default {
-        &:hover {
-            color: #f8c471;
-            background: #212529;
-        }
-    }
-
-    .r-button-group {
-        .r-button {
-            &:first-child {
-                border-radius: 0;
-            }
-            &:last-child {
-                border-radius: 0;
-            }
-        }
-    }
-
     .form-check {
         display: flex;
         justify-content: center; /* Centers the switch horizontally */
