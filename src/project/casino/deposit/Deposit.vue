@@ -108,23 +108,23 @@
         (async () => {
             const { items } = await rebilly.customers.getAll();
             customers.value = items;
-            selectedCustomer.value = items[0].fields.id;
+            // selectedCustomer.value = items[0].fields.id;
         })();
     });
 </script>
 
 <template>
-<!--    <div v-if="!selectedCustomer" class="default-bootstrap container w-50">-->
-<!--        <h4 class="text-white-50">Select which customer you are:</h4>-->
-<!--        <select class="form-select form-select-sm" aria-label="customer select" v-model="selectedCustomer">-->
-<!--            <option v-for="customer in customers" :value="customer.fields.id">-->
-<!--                {{ `${ customer.fields.firstName } ${ customer.fields.lastName }` }}:-->
+    <div v-if="!selectedCustomer" class="default-bootstrap container w-50">
+        <h4 class="text-white-50">Select which customer you are:</h4>
+        <select class="form-select form-select-sm" aria-label="customer select" v-model="selectedCustomer">
+            <option v-for="customer in customers" :value="customer.fields.id">
+                {{ `${ customer.fields.firstName } ${ customer.fields.lastName }` }}
 <!--                <span class="fw-bold" v-for="tag in customer.fields.tags">-->
 <!--                    {{ ` ${tag.name}` }}-->
 <!--                </span>-->
-<!--            </option>-->
-<!--        </select>-->
-<!--    </div>-->
+            </option>
+        </select>
+    </div>
     <div class="mx-auto">
         <div id="deposit"></div>
     </div>
