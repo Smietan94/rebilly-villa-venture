@@ -44,6 +44,9 @@
       <li class="list-group-item">
         <router-link :to="{ name: 'Debrief21' }" class="btn btn-primary">Project 21</router-link>
       </li>
+      <li class="list-group-item">
+        <router-link :to="{ name: 'Debrief22' }" class="btn btn-primary">Project 22</router-link>
+      </li>
     </ul>
   </div>
 </template>

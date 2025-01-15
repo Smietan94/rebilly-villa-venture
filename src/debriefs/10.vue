@@ -22,7 +22,9 @@
             <div>
                 <ul class="list-group">
                     <li class="list-group-item active" aria-current="true">What did you find confusing? Did you encounter any issues?</li>
-                    <li class="list-group-item">broken links to documentation <a href="https://www.npmjs.com/package/@rebilly/framepay-vue#initialization">npmjs</a></li>
+                    <li class="list-group-item">
+                        broken links to documentation <a href="https://www.npmjs.com/package/@rebilly/framepay-vue#initialization">npmjs</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -26,19 +26,26 @@
                     <li class="list-group-item">
                         <img src="/project14/3.png">
                         <br />
-                        It could be pointed more explicitly in docs that the DCC is only for payment card (e.g. orange box like on the screenshot)
+                        It could be pointed more explicitly in docs that the DCC is only for
+                        payment card (e.g. orange box like on the screenshot)
                     </li>
-                    <li class="list-group-item">DCC is only available for payment card, and we can still activate it even if we sat up payment gateway for another payment method</li>
+                    <li class="list-group-item">
+                        DCC is only available for payment card, and we can still activate it even if we sat up
+                        payment gateway for another payment method
+                    </li>
                     <li class="list-group-item">
                         <img src="/project14/1.png">
                         <br />
                         Force conversion is confusing and not documented, also dropdown cannot be unselected
                     </li>
-                    <li class="list-group-item">It would be great if customer have possibility to select currency before confirmation</li>
+                    <li class="list-group-item">
+                        It would be great if customer have possibility to select currency before confirmation
+                    </li>
                     <li class="list-group-item">
                         <img src="/project14/2.png">
                         <br />
-                        DCC should allow to use all currencies by default otherwise conversion choice modal doesnt show, we had to add JPY to accepted currencies
+                        DCC should allow to use all currencies by default otherwise conversion choice modal doesnt show,
+                        we had to add JPY to accepted currencies
                     </li>
                 </ul>
             </div>

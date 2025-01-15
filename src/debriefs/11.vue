@@ -22,7 +22,9 @@
             <div>
                 <ul class="list-group">
                     <li class="list-group-item active" aria-current="true">What did you find confusing? Did you encounter any issues?</li>
-                    <li class="list-group-item">Passing css into rebillyInstruments mount as one of configuration arguments is little confusing</li>
+                    <li class="list-group-item">
+                        Passing css into rebillyInstruments mount as one of configuration arguments is little confusing
+                    </li>
                 </ul>
             </div>
         </div>

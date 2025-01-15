@@ -27,14 +27,26 @@
                         <br />
                         <img src="/project17/2.png">
                     </li>
-                    <li class="list-group-item">gateway accounts list could have status toggle to easily enable and disable gateways without opening them</li>
                     <li class="list-group-item">
-                        when user have more than 3 payment methods available then the dropdown appears which ux is very poor
+                        gateway accounts list could have status toggle to easily enable and disable
+                        gateways without opening them
+                    </li>
+                    <li class="list-group-item">
+                        when user have more than 3 payment methods available then the dropdown appears which ux is
+                        very poor
                         <br />
                         <img src="/project17/1.png">
                     </li>
-                    <li class="list-group-item">it looks like eCheck payment method is not working (we have changed specific gateway account payment method from eCheck to another one and it appeared instantly, so the other configuration is correct)</li>
-                    <li class="list-group-item">we were not able to complete payout with ACH, because we were occurring "paymentInstrumentId is missing" error, described in <router-link :to="{ name: 'Debrief16' }">Project 16 debrief</router-link></li>
+                    <li class="list-group-item">
+                        it looks like eCheck payment method is not working (we have changed specific gateway account
+                        payment method from eCheck to another one and it appeared instantly, so the other configuration
+                        is correct)
+                    </li>
+                    <li class="list-group-item">
+                        we were not able to complete payout with ACH, because we were occurring
+                        "paymentInstrumentId is missing" error, described in
+                        <router-link :to="{ name: 'Debrief16' }">Project 16 debrief</router-link>
+                    </li>
                 </ul>
             </div>
         </div>

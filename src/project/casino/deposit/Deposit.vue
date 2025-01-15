@@ -85,8 +85,8 @@
 
         if (window.RebillyCashier) {
             RebillyCashier.renderDeposit({
-                mountElement,
-                token: depositRequestId,
+                mountElement: mountElement,
+                cashierToken: depositRequestId,
             });
         } else {
             console.error('RebillyCashier library not loaded');
@@ -95,6 +95,7 @@
 
     watch(selectedCustomer, async (newCustomerId) => {
         depositRequestBody.value.customerId = newCustomerId;
+
         await mountInstruments();
     })
 
@@ -119,9 +120,6 @@
         <select class="form-select form-select-sm" aria-label="customer select" v-model="selectedCustomer">
             <option v-for="customer in customers" :value="customer.fields.id">
                 {{ `${ customer.fields.firstName } ${ customer.fields.lastName }` }}
-<!--                <span class="fw-bold" v-for="tag in customer.fields.tags">-->
-<!--                    {{ ` ${tag.name}` }}-->
-<!--                </span>-->
             </option>
         </select>
     </div>

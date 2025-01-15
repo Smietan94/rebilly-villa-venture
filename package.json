@@ -17,6 +17,7 @@
     "@rebilly/instruments": "^9.84.6",
     "@rebilly/revel": "^6.35.9",
     "bootstrap": "5.3",
+    "express": "^4.21.2",
     "moment": "^2.30.1",
     "pinia": "^2.2.4",
     "rebilly-js-sdk": "^56.66.0",

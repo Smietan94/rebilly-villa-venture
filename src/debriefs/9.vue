@@ -22,7 +22,10 @@
             <div>
                 <ul class="list-group">
                     <li class="list-group-item active" aria-current="true">What did you find confusing? Did you encounter any issues?</li>
-                    <li class="list-group-item">Conditions for shipping rates are quite confusing, some description would be helpful. When adding addon offer, shipping rate turns to 0 from 4.99</li>
+                    <li class="list-group-item">
+                        Conditions for shipping rates are quite confusing, some description would be helpful.
+                        When adding addon offer, shipping rate turns to 0 from 4.99
+                    </li>
                 </ul>
             </div>
         </div>
