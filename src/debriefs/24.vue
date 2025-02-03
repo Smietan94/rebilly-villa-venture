@@ -7,7 +7,7 @@
                 <ul class="list-group">
                     <li class="list-group-item active" aria-current="true">Teammates:</li>
                     <li class="list-group-item">Kris Smietana</li>
-                    <li class="list-group-item">Victor Goncearencu</li>
+                    <li class="list-group-item">Simon Sorich</li>
                 </ul>
             </div>
             <br />
