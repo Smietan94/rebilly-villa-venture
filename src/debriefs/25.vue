@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Project 24: Route 3DS with checkout.com on Rebilly</h1>
+        <h1>Project 25: Integrate Checkout.com dispute notifications</h1>
         <div>
             <br />
             <div>
