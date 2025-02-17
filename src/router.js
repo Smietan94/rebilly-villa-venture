@@ -163,4 +163,9 @@ export const routes = [
     name: 'Debrief25',
     component: () => import('./debriefs/25.vue')
   },
+  {
+    path: '/debriefs/26',
+    name: 'Debrief26',
+    component: () => import('./debriefs/26.vue')
+  },
 ]
