@@ -38,9 +38,9 @@
             </badge>
             <div class="grid grid-cols-1 gap-4">
                 <div class="border py-3 px-4 rounded-md bg-slate-100">
-                    Documentation could mention that we have to use credentials for sandbox account from
-                    paypal <a href="https://developer.paypal.com/dashboard/accounts">Sandbox test accounts</a>.
-                    We could not the finish task with credentials which we used for creating developer account
+                    The documentation should mention that credentials for the sandbox account must be obtained from
+                    <a href="https://developer.paypal.com/dashboard/accounts">Sandbox test accounts</a>.
+                    We were unable to complete the task using the credentials for the developer account.
                     <img src="/project38/1.png" class="w-50">
                 </div>
             </div>
