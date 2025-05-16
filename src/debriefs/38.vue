@@ -1,5 +1,6 @@
 <template>
     <main class="container mx-auto py-8 pb-10">
+        <h1 class="mb-5">Project 38: PayPal</h1>
         <h5 class="mb-1 mb-4">Who did it?</h5>
         <div class="flex gap-8 pb-5">
             <div class="border py-3 px-4 rounded-md bg-slate-100 col-span-3 flex gap-4">
@@ -79,7 +80,7 @@
 
     badge {
         @apply inline-block min-w-[90px] text-center;
-        @apply absolute -top-2 -left-4 text-white text-xs px-2 py-1 rounded-md capitalize;
+        @apply absolute -top-4 left-5 text-white text-xs px-2 py-1 rounded-md capitalize;
 
         &[type=confusion] {
             @apply bg-red-500;

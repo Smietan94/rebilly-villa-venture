@@ -3,7 +3,10 @@
         <h2>Projects debriefs:</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-center">
             <div class="debrief-tab">
-                <router-link :to="{ name: 'Debrief38' }" class="new-debrief">Project 38</router-link>
+                <router-link :to="{ name: 'Debrief39' }" class="new-debrief">Project 39</router-link>
+            </div>
+            <div class="debrief-tab">
+                <router-link :to="{ name: 'Debrief38' }" class="debrief-btn">Project 38</router-link>
             </div>
             <div class="col-start-1 col-end-4 debrief-tab"></div>
             <div class="debrief-tab">
