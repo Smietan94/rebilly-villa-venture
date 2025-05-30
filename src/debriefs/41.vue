@@ -6,7 +6,7 @@
         document.title = 'Project 41';
     });
 
-    function openFullscreen(img: HTMLImageElement) {
+    function openFullscreen(img: any) {
         if (img) {
             if (img.requestFullscreen) {
                 img.requestFullscreen();
